@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\gitDemoRepo\KephasJava\HelloJava\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+3119624289.index
+1808637612.index
