@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        /* (S) ESC6 배열 방법 및 디스트럭쳐링*/
+        // const myArray = ['apple', 'banana', 'orange'];
+        // const [item2, ,item3] = myArray;
+
+        // const myList = myArray.map((item) => item )
+        // console.log(myList)
+        // document.write(myList);
+
+        // console.log([...item2])
+        /* (E) ESC6 배열 방법 및 디스트럭쳐링*/
+
+
+
+
+        /* (S) 객체 디스트럭쳐링 */
+        // const aa = {
+        //     brand : 'Ford'
+        //     , model : 'Mustang'
+        //     , type : 'car'
+        //     , year : 2021
+        //     , color : 'red'
+        //     , registance : {
+        //         city : 'Houston'
+        //         , state : 'Texas'
+        //         , country : 'USA'
+        //     }
+        // }
+
+        // const myVehicle = ({type, brand, registance: {city, state} }) => {
+        //     // const message = 'My ' + type + ' is a ' + aa.color + ' ' + brand + ' ' + aa.model + '.';
+        //     const message = `My ${type} is a ${aa.color} ${brand} ${aa.model}.zzzzz and who are ${city} Or ${state}`;
+        //     console.log(message);
+        // }
+
+        // myVehicle(aa);
+        /* (E) 객체 디스트럭쳐링 */
+
+
+
+        /*(S) 스프레드 연상자 */
+        // 배열
+        // const numberOne = [1, 2, 3];
+        // const numberTwo = [4,5,6];
+
+        // const numberCombined = [...numberOne, ...numberTwo];
+
+        // console.log(numberCombined);
+
+        // const [one, two, ...rest] = numberCombined;
+        // const aa = [one, two];
+        // console.log([...aa]);
+
+
+
+        // 객체
+        // const myVehicle = {
+        //     brand : 'Ford'
+        //     , model : 'Mustang'
+        //     , color : 'red'
+        // }
+
+        // const updateMyVehicle = {
+        //     type : 'car'
+        //     , year : 2021
+        //     , color : 'yellow'
+        // }
+
+        // const myUpdateVehicle = {...myVehicle, ...updateMyVehicle};
+
+        // console.log(myUpdateVehicle);
+        /*(E) 스프레드 연상자 */
+        import {name, age} from "./math.js";
+
+        console.log(name);
+    </script>
+
+
+
+</body>
+</html>
