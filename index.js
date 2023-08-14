@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+//import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 /** Car.js컴포넌트 임포트 시키기 */
 // import Car from './Car.js';
+
+
+
+
 
 /* (S) 기존소스 */
 // const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,12 +26,14 @@ import reportWebVitals from './reportWebVitals';
 /** (S) 리액트 렌더HTML 및 JSX설명 */
 /** JSX : JavaScript 코드 내에 HTML 태그를 작성할 수 있는 JavaScript XML의 줄임말. */
 /** 1. XML 규칙을 따르므로 태그 열고 닫을 시에는 유의해야한다.*/
-/** 2. JSX문법안에서 JavaScript코드를 쓰기위해서는 ()로 감싸야 한다. */
+/** 2. JSX문법안에서 JavaScript코드를 쓰기위해서는 {}로 감싸야 한다. */
 // const myElement = (
 //   <table>
 //       <tr>
 //         <th>Name</th>
 //       </tr>
+
+
 //       <tr>
 //         <td>John</td>
 //       </tr>
@@ -128,31 +134,160 @@ import reportWebVitals from './reportWebVitals';
 
 
 /** (S) 리액트 리스트 */
-function Car(props) {
-  console.log(props);
-  return <li>I am a {props.id}  {props.brand}</li>;
-}
+// function Car(props) {
+//   console.log(props);
+//   return <li>I am a {props.id}  {props.brand}</li>;
+// }
 
-function Garage() {
-  const cars = [
-    {id: 1, brand: 'Ford'},
-    {id: 2, brand: 'BMW'},
-    {id: 3, brand: 'Audi'}
-  ];
+// function Garage() {
+//   const cars = [
+//     {id: 1, brand: 'Ford'},
+//     {id: 2, brand: 'BMW'},
+//     {id: 3, brand: 'Audi'}
+//   ];
+
+//   return (
+//     <>
+//       <h1>Who lives in my garage?</h1>
+//       <ul>
+//         {cars.map((item) => <Car key = {item.id} brand = {item.brand} id = {item.id} />)}
+//       </ul>
+//     </>
+
+//   )
+// }
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<Garage />)
+/** (E) 리액트 리스트 */
+
+
+
+
+
+
+
+/* (S) 리액트 양식 */
+// const x = [1,2,3];
+// const y = x.reversese();
+// y.push(0);
+
+// console.log(x)
+// console.log(y)
+
+// const arr1 = [1,2,3,4,5];
+// //const arr2 = [10,9,8,7,6];
+
+// const arr1_copy = arr1.filter(x => x > 3);
+// const arr1_copy2 = arr1.map(x => x > 3);
+// console.log(arr1);
+// console.log(arr1_copy);
+// console.log(arr1_copy2);
+/* (E) 리액트 양식 */
+
+
+
+
+
+/** (S) 리액트 useState*/
+// const root = document.getElementById('root');
+// const App = () => {
+//   const [counter, last] = React.useState(0);
+//   // 객체를 보유한 단일 Hook
+//   // const [car, setCar] = React.useState({
+//   //   brand : 'Ford'
+//   //   , model : 'Mustang'
+//   //   , year : '1964'
+//   //   , color : 'red'
+//   // });
+
+//   const onClick = () => {
+//     // last(counter + 1)보다 좋은 방법, 
+//     // last(counter + 1);
+//     last((cur) => cur + 1)
+
+
+//   //   setCar(previousState => {
+//   //     console.log(previousState)
+//   //     return { ...previousState, color : 'hotPink'}
+//   //   })
+//   };
+
+//   return (
+//     <div>
+//       <h3>Total Clicks : {counter}</h3>
+//       {/* <h3>My car is brand : {car.brand}</h3> */}
+//       <button onClick={onClick}>Click Me!!</button>
+//     </div>
+//   )
+// }
+// const Root = ReactDOM.createRoot(root);
+// Root.render(<App />);
+/** (E) 리액트 useState*/
+
+
+
+
+
+
+/** (S) 리액트 useState 2. React에서 form작성방법 */
+const root = document.getElementById('root');
+const App = () => {
+
+  const [amount, setAmount] = React.useState(0);
+  const [flipped, setFlipped] = React.useState(false);
+
+  const OnChange = (e) => {
+    // setMinutes("dhkdn rlahWl");
+    setAmount(e.target.value)
+  };
+
+  const reset = () => {
+    setAmount(0);
+  }
+
+  const onFlip = () => setFlipped((current) => !current);
 
   return (
-    <>
-      <h1>Who lives in my garage?</h1>
-      <ul>
-        {cars.map((item) => <Car key = {item.id} brand = {item.brand} id = {item.id}/>)}
-      </ul>
-    </>
+    <div>
+      <h1>Super Converter!</h1>
+      <div>
+        <label htmlFor='min'>Minutes</label>
+        <input
+          onChange={OnChange} 
+          value={flipped ? amount * 60 : amount}
+          id='min' 
+          placeholder='Minutes' 
+          type='number' 
+          disabled = {flipped}
+        />
+      </div>
 
+      <div>
+        <label htmlFor='hour'>Hour</label>
+        <input 
+          onChange={OnChange}
+          value={flipped ? amount : Math.round(amount / 60)} 
+          id='hour' 
+          placeholder='Hours' 
+          type='nuber' 
+          disabled = {!flipped}
+        />
+      </div>
+      <button onClick={reset}>Reset!</button>
+      <button onClick={onFlip}>Flipp</button>
+    </div>
   )
+
+
 }
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Garage />)
-/** (E) 리액트 리스트 */
+
+const Root = ReactDOM.createRoot(root);
+Root.render(<App />);
+/** (E) 리액트 useState 2. React에서 form작성방법*/
+
+
+
+
 
 
 
