@@ -230,63 +230,162 @@ import reportWebVitals from './reportWebVitals';
 
 
 /** (S) 리액트 useState 2. React에서 form작성방법 */
-const root = document.getElementById('root');
-const App = () => {
+// const root = document.getElementById('root');
+// const App = () => {
 
-  const [amount, setAmount] = React.useState(0);
-  const [flipped, setFlipped] = React.useState(false);
+//   const [amount, setAmount] = React.useState(0);
+//   const [flipped, setFlipped] = React.useState(false);
 
-  const OnChange = (e) => {
-    // setMinutes("dhkdn rlahWl");
-    setAmount(e.target.value)
-  };
+//   const OnChange = (e) => {
+//     // setMinutes("dhkdn rlahWl");
+//     setAmount(e.target.value)
+//   };
 
-  const reset = () => {
-    setAmount(0);
-  }
+//   const reset = () => {
+//     setAmount(0);
+//   }
 
-  const onFlip = () => setFlipped((current) => !current);
+//   const onFlip = () => setFlipped((current) => !current);
 
-  return (
-    <div>
-      <h1>Super Converter!</h1>
-      <div>
-        <label htmlFor='min'>Minutes</label>
-        <input
-          onChange={OnChange} 
-          value={flipped ? amount * 60 : amount}
-          id='min' 
-          placeholder='Minutes' 
-          type='number' 
-          disabled = {flipped}
-        />
-      </div>
+//   return (
+//     <div>
+//       <h1>Super Converter!</h1>
+//       <div>
+//         <label htmlFor='min'>Minutes</label>
+//         <input
+//           onChange={OnChange} 
+//           value={flipped ? amount * 60 : amount}
+//           id='min' 
+//           placeholder='Minutes' 
+//           type='number' 
+//           disabled = {flipped}
+//         />
+//       </div>
 
-      <div>
-        <label htmlFor='hour'>Hour</label>
-        <input 
-          onChange={OnChange}
-          value={flipped ? amount : Math.round(amount / 60)} 
-          id='hour' 
-          placeholder='Hours' 
-          type='nuber' 
-          disabled = {!flipped}
-        />
-      </div>
-      <button onClick={reset}>Reset!</button>
-      <button onClick={onFlip}>Flipp</button>
-    </div>
-  )
+//       <div>
+//         <label htmlFor='hour'>Hour</label>
+//         <input 
+//           onChange={OnChange}
+//           value={flipped ? amount : Math.round(amount / 60)} 
+//           id='hour' 
+//           placeholder='Hours' 
+//           type='nuber' 
+//           disabled = {!flipped}
+//         />
+//       </div>
+//       <button onClick={reset}>Reset!</button>
+//       <button onClick={onFlip}>Flipp</button>
+//     </div>
+//   )
 
 
-}
+// }
 
-const Root = ReactDOM.createRoot(root);
-Root.render(<App />);
+// const Root = ReactDOM.createRoot(root);
+// Root.render(<App />);
 /** (E) 리액트 useState 2. React에서 form작성방법*/
 
 
 
+
+
+
+
+/**(S) 리액트 Props, React.memo */
+// JSX에서 인라인스타일링. JSX에서 자바스크립트 표현식을 쓰기위해서 {}와 자바스크립트 객체도 {}를 사용하므로 두 세트의 중괄호를 사용하게 된다. {{}}
+// const root = document.getElementById('root');
+
+// function Btn({ text, onClick}) { {/* { banana }인자하나값을 보낼 수도 있다.*/}
+//   console.log(text, "was render!!");
+//   return (
+   
+//     <button
+//       onClick={onClick}
+//       style={{
+//         background: "tomato"
+//         , color : "white"
+//         , padding : "10px 20px"
+//         , border : 0
+//         , borderRadius: 10
+//       }}
+//     >
+//     {text}
+//     </button>
+//   )
+    
+// }
+
+// const MemorizedBtn = React.memo(Btn);
+
+// const App = () => {
+//   const [value, setValue] = React.useState("Save Changes");
+//   const changeValue = () => setValue("Revert Changes");
+//   return (
+//     <div>
+//       {/* JavaScript Btn({banana}) 와 같은 방식 */}
+//       {/* 함수형 컴포넌트의 Prop들 */}
+//       <MemorizedBtn text={value} onClick={changeValue}/>
+//       <MemorizedBtn text="Continue"/>
+//     </div>
+//   )
+// }
+// const Root = ReactDOM.createRoot(root);
+// Root.render(<App />);
+/**(E) 리액트 Props, React.memo  */
+
+
+
+
+
+/**(S) 리액트 memo */
+const root = document.getElementById('root');
+
+const App = () => {
+  const [count, setCount] = React.useState(0);
+  const [todos, setTodos] = React.useState([]);
+  // const calculation = expensiceCalculation(count);
+  const calculation = React.useMemo(() => expensiceCalculation(count), [count]);
+  const increment = () => {
+    setCount((c) => c + 1);
+  }
+
+  const addTodo = () => {
+    setTodos((t) => 
+      [...t, "new Todo"]
+    );
+  }
+
+  return (
+    <div>
+      <div>
+        <h2>My Todos</h2>
+        {todos.map((todo, index) => {
+          return <p key={index}>{todo}</p>;
+        })}
+        <button onClick={addTodo}>Add Todo</button>
+      </div>
+      <hr />
+      <div>
+        Count: {count}
+        <button onClick={increment}>+</button>
+        <h2>Expensive Calculation</h2>
+        {calculation}
+      </div>
+    </div>
+  )
+}
+
+const expensiceCalculation = (num) => {
+  console.log("Calculating....");
+  for (let i = 0; i < 1000000000; i++) {
+    num += 1;
+  }
+  return num;
+
+}
+const Root = ReactDOM.createRoot(root);
+Root.render(<App />);
+/**(E) 리액트 memo */
 
 
 
